@@ -1,12 +1,12 @@
 "use client";
 
+import { Calendar, Search } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
-import { ArrowRight, Calendar, User, Search, Tag } from "lucide-react";
-import { useState } from "react";
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -163,6 +163,7 @@ export default function BlogPage() {
           <div className="flex flex-wrap gap-2 justify-center">
             {categories.map((category) => (
               <button
+                type="button"
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full font-medium transition-colors capitalize ${

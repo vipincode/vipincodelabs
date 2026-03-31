@@ -1,11 +1,11 @@
 "use client";
 
+import { ArrowRight, BookOpen, Code, Users, Zap } from "lucide-react";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
-import { ArrowRight, BookOpen, Code, Zap, Users } from "lucide-react";
 
 export default function Home() {
   const courses = [

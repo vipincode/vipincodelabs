@@ -85,10 +85,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="careers"
+                  href="/faq"
                   className="text-foreground/60 hover:text-accent transition-colors"
                 >
-                  Careers
+                  FAQs
                 </Link>
               </li>
             </ul>
@@ -98,36 +98,36 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Connect</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-foreground/60 hover:text-accent transition-colors"
                 >
                   YouTube
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-foreground/60 hover:text-accent transition-colors"
                 >
                   Twitter
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-foreground/60 hover:text-accent transition-colors"
                 >
                   GitHub
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="text-foreground/60 hover:text-accent transition-colors"
                 >
                   LinkedIn
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

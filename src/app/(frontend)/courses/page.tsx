@@ -1,12 +1,12 @@
 "use client";
 
+import { ArrowRight, BarChart3, Clock, Star, Users } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
-import { ArrowRight, Star, Users, Clock, BarChart3 } from "lucide-react";
 
 export default function CoursesPage() {
   const [selectedLevel, setSelectedLevel] = useState<string>("All");
@@ -177,6 +177,7 @@ export default function CoursesPage() {
           <div className="mb-12 flex flex-wrap gap-3 justify-center">
             {levels.map((level) => (
               <button
+                type="button"
                 key={level}
                 onClick={() => setSelectedLevel(level)}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
@@ -337,9 +338,9 @@ export default function CoursesPage() {
                 description:
                   "Earn certificates upon course completion to showcase your achievements.",
               },
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <div
-                key={index}
+                key={benefit.title}
                 className="bg-card border border-border p-8 rounded-lg hover:border-primary/50 transition-colors"
               >
                 <div className="text-3xl mb-4">{benefit.icon}</div>

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Calendar, Clock, Play, Search } from "lucide-react";
 import Link from "next/link";
+import { useMemo, useState } from "react";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
-import { Search, Play, Clock, Calendar } from "lucide-react";
 
 export default function VideosPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -213,6 +213,7 @@ export default function VideosPage() {
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
+                  type="button"
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
@@ -287,7 +288,7 @@ export default function VideosPage() {
                         variant="outline"
                         className="border-border hover:bg-primary hover:text-primary-foreground hover:border-primary"
                       >
-                        <a
+                        <Link
                           href={`#video-${video.id}`}
                           onClick={(e) => {
                             e.preventDefault();
@@ -298,7 +299,7 @@ export default function VideosPage() {
                           }}
                         >
                           Watch
-                        </a>
+                        </Link>
                       </Button>
                     </div>
                   </div>

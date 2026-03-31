@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run type-check || exit 1
+npx biome check --write . || exit 1

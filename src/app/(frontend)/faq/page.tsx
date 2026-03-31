@@ -1,8 +1,8 @@
 "use client";
 
+import { ChevronDown, MessageSquare, Search } from "lucide-react";
 import Link from "next/link";
-import { useState, useMemo } from "react";
-import { Search, ChevronDown, MessageSquare } from "lucide-react";
+import { useMemo, useState } from "react";
 
 interface FAQItem {
   id: string;
@@ -300,6 +300,7 @@ export default function FAQPage() {
                 &quot;. Try different keywords or browse all categories below.
               </p>
               <button
+                type="button"
                 onClick={() => setSearchQuery("")}
                 className="text-accent hover:text-primary transition-colors font-semibold"
               >
@@ -326,6 +327,7 @@ export default function FAQPage() {
                           className="bg-card border border-border rounded-lg hover:border-primary/50 transition-colors overflow-hidden"
                         >
                           <button
+                            type="button"
                             onClick={() =>
                               setExpandedId(
                                 expandedId === faq.id ? null : faq.id,

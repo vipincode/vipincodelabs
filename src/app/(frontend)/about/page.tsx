@@ -1,19 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import {
   ArrowRight,
+  Award,
   Code2,
-  Users,
-  Zap,
   Heart,
   Target,
-  Award,
+  Users,
+  Zap,
 } from "lucide-react";
+import Link from "next/link";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
   return (
@@ -140,8 +140,8 @@ export default function AboutPage() {
               { value: "500+", label: "Video Tutorials" },
               { value: "8+", label: "Complete Courses" },
               { value: "4.9★", label: "Average Rating" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
+            ].map((stat) => (
+              <div key={stat.value} className="text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-2">
                   {stat.value}
                 </div>
@@ -202,11 +202,11 @@ export default function AboutPage() {
                 description:
                   "We stay ahead of the curve, constantly updating our courses with the latest technologies and methodologies.",
               },
-            ].map((value, index) => {
+            ].map((value) => {
               const Icon = value.icon;
               return (
                 <Card
-                  key={index}
+                  key={value.title}
                   className="bg-card border-border p-8 hover:border-primary/50 transition-colors"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -257,8 +257,8 @@ export default function AboutPage() {
                 description:
                   "Join a community of passionate developers. Ask questions, share projects, and connect with fellow learners on your journey.",
               },
-            ].map((item, index) => (
-              <div key={index} className="flex gap-6">
+            ].map((item) => (
+              <div key={item.title} className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10">
                     <ArrowRight className="h-6 w-6 text-primary" />
@@ -294,9 +294,9 @@ export default function AboutPage() {
               { platform: "YouTube", link: "#", users: "50K+" },
               { platform: "Discord", link: "#", users: "Active Community" },
               { platform: "Twitter", link: "#", users: "Daily Updates" },
-            ].map((social, index) => (
+            ].map((social) => (
               <Card
-                key={index}
+                key={social.platform}
                 className="bg-card border-border p-8 text-center hover:border-primary/50 transition-colors"
               >
                 <h3 className="text-xl font-semibold text-foreground mb-2">

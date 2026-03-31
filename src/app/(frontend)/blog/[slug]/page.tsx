@@ -1,20 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import {
   ArrowLeft,
   Calendar,
-  User,
   Clock,
   Share2,
   ThumbsUp,
+  User,
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { Button } from "@/components/ui/button";
 
-const blogPostsData: Record<string, any> = {
+type BlogPost = {
+  id: number;
+  title: string;
+  author: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  tags: string[];
+  relatedPosts: {
+    slug: string;
+    title: string;
+  }[];
+  content: string;
+};
+const blogPostsData: Record<string, BlogPost> = {
   "react-hooks-guide": {
     id: 1,
     title: "Complete Guide to React Hooks: From Basics to Advanced Patterns",
@@ -328,38 +343,36 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
               <article className="prose prose-invert max-w-none text-foreground">
                 <div className="space-y-6 text-lg leading-relaxed">
-                  {post.content
-                    .split("\n")
-                    .map((line: string, index: number) => {
-                      if (line.startsWith("<h2>")) {
-                        return (
-                          <h2
-                            key={index}
-                            className="text-3xl font-bold text-foreground mt-8 mb-4"
-                          >
-                            {line.replace(/<h2>|<\/h2>/g, "")}
-                          </h2>
-                        );
-                      }
-                      if (line.startsWith("<h3>")) {
-                        return (
-                          <h3
-                            key={index}
-                            className="text-xl font-semibold text-foreground mt-6 mb-3"
-                          >
-                            {line.replace(/<h3>|<\/h3>/g, "")}
-                          </h3>
-                        );
-                      }
-                      if (line.startsWith("<p>")) {
-                        return (
-                          <p key={index} className="text-foreground/90">
-                            {line.replace(/<p>|<\/p>/g, "")}
-                          </p>
-                        );
-                      }
-                      return null;
-                    })}
+                  {post.content.split("\n").map((line: string) => {
+                    if (line.startsWith("<h2>")) {
+                      return (
+                        <h2
+                          key={line}
+                          className="text-3xl font-bold text-foreground mt-8 mb-4"
+                        >
+                          {line.replace(/<h2>|<\/h2>/g, "")}
+                        </h2>
+                      );
+                    }
+                    if (line.startsWith("<h3>")) {
+                      return (
+                        <h3
+                          key={line}
+                          className="text-xl font-semibold text-foreground mt-6 mb-3"
+                        >
+                          {line.replace(/<h3>|<\/h3>/g, "")}
+                        </h3>
+                      );
+                    }
+                    if (line.startsWith("<p>")) {
+                      return (
+                        <p key={line} className="text-foreground/90">
+                          {line.replace(/<p>|<\/p>/g, "")}
+                        </p>
+                      );
+                    }
+                    return null;
+                  })}
                 </div>
               </article>
 
@@ -384,7 +397,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <span className="text-foreground font-medium">
                     Share this article
                   </span>
-                  <button className="p-2 bg-card border border-border rounded-lg hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+                  <button
+                    type="button"
+                    className="p-2 bg-card border border-border rounded-lg hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
+                  >
                     <Share2 className="w-5 h-5" />
                   </button>
                 </div>
@@ -397,6 +413,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="sticky top-20 space-y-6">
                 <div className="bg-card border border-border rounded-lg p-6">
                   <button
+                    type="button"
                     onClick={() => setLiked(!liked)}
                     className={`w-full py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 ${
                       liked
@@ -418,7 +435,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                       Related Articles
                     </h3>
                     <div className="space-y-3">
-                      {post.relatedPosts.map((relatedPost: any) => (
+                      {post.relatedPosts.map((relatedPost) => (
                         <Link
                           key={relatedPost.slug}
                           href={`/blog/${relatedPost.slug}`}
